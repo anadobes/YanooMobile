@@ -4,15 +4,16 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
-
     <Button
         android:id="@+id/button1"
         android:text="Button1"
         android:textColor="#CC884488"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#cc557788" />
+    
 </LinearLayout>
