@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">YanooMobile</string>
+    <string name="app_name">YaNoo Mobile</string>
     <string name="name">Nom : </string>
     <string name="date">Date : </string>
 </resources>

@@ -3,7 +3,9 @@ package com.anadobes.yanoo.races.activities;
 import java.text.SimpleDateFormat;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anadobes.yanoo.R;
@@ -26,6 +28,7 @@ public class RaceDetailsActivity extends Activity {
 			((TextView) findViewById(R.id_racedetails.name)).setText(race.getName());
 			((TextView) findViewById(R.id_racedetails.date)).setText((new SimpleDateFormat("dd/MM/yyyy")).format(race.getDate()));
 			((TextView) findViewById(R.id_racedetails.description)).setText(race.getDescription());
+			((ImageView) findViewById(R.id_racedetails.image)).setImageURI(Uri.parse("/mnt/sdcard/tmp/" + race.getIconFileName()));
 		}
 	}
 }
