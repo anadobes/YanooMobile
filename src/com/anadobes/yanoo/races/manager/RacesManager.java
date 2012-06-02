@@ -8,11 +8,24 @@ import com.anadobes.yanoo.races.models.Race;
 
 public class RacesManager {
 
-	List<Race> racesList;
+	private static RacesManager instance;
+	private List<Race> racesList;
 
-	public RacesManager() {
+	// TODO ? utiliser une clef de course ?
+
+	/**
+	 * Constructeur
+	 */
+	private RacesManager() {
 		racesList = new ArrayList<Race>();
 		createTestRaces();
+	}
+
+	public static RacesManager instance() {
+		if (instance == null) {
+			instance = new RacesManager();
+		}
+		return instance;
 	}
 
 	private void createTestRaces() {
@@ -24,5 +37,16 @@ public class RacesManager {
 
 	public List<Race> getRacesList() {
 		return racesList;
+	}
+
+	/**
+	 * Recherche la course correspondante
+	 */
+	public Race getRace(String raceName) {
+		for (Race race : racesList) {
+			if (race.getName().equals(raceName))
+				return race;
+		}
+		return null;
 	}
 }

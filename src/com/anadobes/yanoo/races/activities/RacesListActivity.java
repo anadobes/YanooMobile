@@ -3,8 +3,10 @@ package com.anadobes.yanoo.races.activities;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,8 +25,6 @@ public class RacesListActivity extends ListActivity {
 	private ListView list;
 	private ListAdapter adapter;
 
-	private RacesManager racesManager;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,13 +32,11 @@ public class RacesListActivity extends ListActivity {
 
 		list = getListView();
 		adapter = getListAdapter();
-		
-		racesManager = new RacesManager();
 
 		Toast.makeText(this, "vouvou", Toast.LENGTH_SHORT).show();
 
 		// Test recup data : 
-		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+		findViewById(R.id_raceslist.button1).setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -59,7 +57,7 @@ public class RacesListActivity extends ListActivity {
 
 		HashMap<String, String> map;	// HashMap temporaire qui contiendra les informations pour un item
 		
-		for (Race race : racesManager.getRacesList()) {
+		for (Race race : RacesManager.instance().getRacesList()) {
 			map = new HashMap<String, String>();
 			map.put("name", race.getName());
 			map.put("date", (new SimpleDateFormat("dd/MM/yyyy")).format(race.getDate()));
@@ -68,7 +66,7 @@ public class RacesListActivity extends ListActivity {
 		
 		adapter = new SimpleAdapter(this.getBaseContext(), listItem, R.layout.races_raceslist_row_adapter, 
 				new String[] { "name", "date" }, 
-				new int[] { R.id.name, R.id.date });
+				new int[] { R.id_raceslist_row_adapter.name, R.id_raceslist_row_adapter.date });
 
 		list.setAdapter(adapter);
 	}
@@ -77,8 +75,11 @@ public class RacesListActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
-		// TODO call other activity
-
-		Toast.makeText(getApplicationContext(), "cool", Toast.LENGTH_SHORT).show();
+		Map<String, String> map = (Map<String, String>) l.getAdapter().getItem(position);
+		String raceName = map.get("name");
+		
+		Intent i = new Intent(this, RaceDetailsActivity.class);
+		i.putExtra("raceName", raceName);
+		startActivity(i);
 	}
 }
