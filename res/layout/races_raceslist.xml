@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id_raceslist/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Récupérer les courses"
-        android:textColor="#CC884488" />
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

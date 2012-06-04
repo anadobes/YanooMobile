@@ -6,23 +6,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.anadobes.yanoo.R;
 import com.anadobes.yanoo.races.data.RacesData;
 import com.anadobes.yanoo.races.manager.RacesManager;
 import com.anadobes.yanoo.races.models.Race;
 
-public class RacesListActivity extends ListActivity {
+public class RacesListActivity extends SherlockListActivity {
 
 	private ListView list;
 	private ListAdapter adapter;
@@ -35,19 +36,36 @@ public class RacesListActivity extends ListActivity {
 		list = getListView();
 		adapter = getListAdapter();
 
-		Toast.makeText(this, "vouvou", Toast.LENGTH_SHORT).show();
-
-		// RÈcup data si clic sur bouton : 
-		findViewById(R.id_raceslist.button1).setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				new DownloadRacesTask().execute();
-			};
-		});
-
+		// Mise à jour de démarage avec données de test :
 		bindListViewData();
 	}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+        getSupportMenuInflater().inflate(R.menu.races_menu_items, menu);
+        getSupportActionBar().setHomeButtonEnabled(true);
+		return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	
+    	switch (item.getItemId()) {
+    	
+    	case android.R.id.home:
+            Toast.makeText(this, "Back home to implement :-/", Toast.LENGTH_SHORT).show();
+            return true;
+
+    	case R.id_raceslist_menu.refresh:
+            Toast.makeText(this, "Récupération des nouvelles courses ...", Toast.LENGTH_SHORT).show();
+            new DownloadRacesTask().execute();
+            return true;
+            
+        default:
+            return super.onOptionsItemSelected(item);
+		}
+    }
 
 	/**
 	 * Bind the races data model to the ListView.

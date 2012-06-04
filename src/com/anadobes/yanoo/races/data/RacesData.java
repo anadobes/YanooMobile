@@ -20,8 +20,8 @@ public class RacesData {
 		List<Race> list = new ArrayList<Race>();
 
 		try {
-
-			Document doc = Jsoup.connect("http://www.yanoo.net/index.php?load=liste_evenement").get();
+			
+			Document doc = Jsoup.connect("http://www.yanoo.net/index.php?load=liste_evenement&am=201208").get();
 
 			Elements resultTables = doc.select("table[style=height:100%;]");
 

@@ -2,17 +2,17 @@ package com.anadobes.yanoo.races.activities;
 
 import java.text.SimpleDateFormat;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.anadobes.yanoo.R;
 import com.anadobes.yanoo.races.manager.RacesManager;
 import com.anadobes.yanoo.races.models.Race;
 
-public class RaceDetailsActivity extends Activity {
+public class RaceDetailsActivity extends SherlockActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
