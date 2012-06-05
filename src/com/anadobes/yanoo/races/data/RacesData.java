@@ -39,11 +39,13 @@ public class RacesData {
 				Elements srcsAffiche = tablePresentation.first().getElementsByTag("img");
 				String iconUrl = srcsAffiche.first().attr("src");
 
-				String destFolder = "/mnt/sdcard/tmp";
+				File dirDest = new File("/mnt/sdcard/tmp");
+				if(!dirDest.exists())
+					dirDest.mkdirs();
 				String iconFilename = (new File(iconUrl)).getName();
-				if (!new File(destFolder, iconFilename).exists()) {
+				if (!new File(dirDest, iconFilename).exists()) {
 					// télécharge l'image (si besoin) :
-					DownloadFile.download("http://www.yanoo.net/" + iconUrl, destFolder, iconFilename);
+					DownloadFile.download("http://www.yanoo.net/" + iconUrl, dirDest.getPath(), iconFilename);
 				}
 
 				// Ajout de la nouvelle course :

@@ -59,7 +59,7 @@ public class RacesListActivity extends SherlockListActivity {
 
     	case R.id_raceslist_menu.refresh:
             Toast.makeText(this, "Récupération des nouvelles courses ...", Toast.LENGTH_SHORT).show();
-            new DownloadRacesTask().execute();
+            new DownloadRacesTask(item).execute();
             return true;
             
         default:
@@ -107,16 +107,39 @@ public class RacesListActivity extends SherlockListActivity {
 
 	private class DownloadRacesTask extends AsyncTask<Void, Void, List<Race>> {
 
+		// Objet MenuItem qui contiendra une ProgressBar durant le téléchargement
+		private MenuItem refreshMenuItem = null;
+		
+		public DownloadRacesTask(MenuItem item) {
+			refreshMenuItem = item;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// Lancement animation ProgressBar indéterminée :
+			if(refreshMenuItem != null)
+				refreshMenuItem.setActionView(R.layout.refresh_progress_bar);
+		}
+		
 		@Override
 		protected List<Race> doInBackground(Void... params) {
+			// Récupération de la liste de courses :
 			return RacesData.getRaces();
 		}
 
 		@Override
 		protected void onPostExecute(List<Race> result) {
-			Toast.makeText(getApplicationContext(), "Liste des courses mise ‡ jour", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Liste des courses mise à jour", Toast.LENGTH_SHORT).show();
+			
+			// Utilisation de la nouvelle liste de courses :
 			RacesManager.instance().setRacesList(result);
+			
+			// Mise à jour de la vue :
 			bindListViewData();
+			
+			// Arrêt animation ProgressBar indéterminée :
+			if(refreshMenuItem != null)
+				refreshMenuItem.setActionView(null);
 		}
 	}
 }
