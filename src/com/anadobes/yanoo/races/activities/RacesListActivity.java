@@ -20,6 +20,7 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.anadobes.yanoo.R;
+import com.anadobes.yanoo.home.activities.HomeActivity;
 import com.anadobes.yanoo.races.data.RacesData;
 import com.anadobes.yanoo.races.manager.RacesManager;
 import com.anadobes.yanoo.races.models.Race;
@@ -55,7 +56,8 @@ public class RacesListActivity extends SherlockListActivity {
     	switch (item.getItemId()) {
     	
     	case android.R.id.home:
-            Toast.makeText(this, "Back home to implement :-/", Toast.LENGTH_SHORT).show();
+    		Intent i = new Intent(this, HomeActivity.class);
+    		startActivity(i);
             return true;
 
     	case R.id_raceslist_menu.refresh:
