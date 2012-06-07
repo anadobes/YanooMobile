@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="app_name">YaNoo Mobile</string>
-    <string name="name">Nom : </string>
-    <string name="date">Date : </string>
+    
+    <string name="races_nodata">Cliquer sur rafraichir pour récupérer la liste des courses</string>
+    <string name="races_getdata">Récupération des courses en cours ...</string>
+    <string name="races_datareceived">Liste des courses mise à jour</string>
 </resources>

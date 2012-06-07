@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListActivity;
@@ -37,7 +38,7 @@ public class RacesListActivity extends SherlockListActivity {
 		adapter = getListAdapter();
 
 		// Mise à jour de démarage avec données de test :
-		bindListViewData();
+		//bindListViewData();
 	}
 
     @Override
@@ -58,8 +59,7 @@ public class RacesListActivity extends SherlockListActivity {
             return true;
 
     	case R.id_raceslist_menu.refresh:
-            Toast.makeText(this, "Récupération des nouvelles courses ...", Toast.LENGTH_SHORT).show();
-            new DownloadRacesTask(item).execute();
+    		new DownloadRacesTask(item).execute();
             return true;
             
         default:
@@ -116,6 +116,9 @@ public class RacesListActivity extends SherlockListActivity {
 
 		@Override
 		protected void onPreExecute() {
+			// Changement du texte
+			TextView emptyTV = (TextView) findViewById(android.R.id.empty);
+			emptyTV.setText(getResources().getString(R.string.races_getdata));
 			// Lancement animation ProgressBar indéterminée :
 			if(refreshMenuItem != null)
 				refreshMenuItem.setActionView(R.layout.refresh_progress_bar);
@@ -129,7 +132,7 @@ public class RacesListActivity extends SherlockListActivity {
 
 		@Override
 		protected void onPostExecute(List<Race> result) {
-			Toast.makeText(getApplicationContext(), "Liste des courses mise à jour", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), getResources().getString(R.string.races_datareceived), Toast.LENGTH_SHORT).show();
 			
 			// Utilisation de la nouvelle liste de courses :
 			RacesManager.instance().setRacesList(result);
