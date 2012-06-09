@@ -11,11 +11,6 @@ public class RacesManager {
 	private static RacesManager instance;
 	private List<Race> racesList;
 
-	// TODO ? utiliser une clef de course ?
-
-	/**
-	 * Constructeur
-	 */
 	private RacesManager() {
 		racesList = new ArrayList<Race>();
 		createTestRaces();

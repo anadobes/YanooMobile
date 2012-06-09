@@ -35,6 +35,9 @@ public class RacesListActivity extends SherlockListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.races_raceslist);
 
+		// Affiche la flèche à coté du bouton home
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
 		list = getListView();
 		adapter = getListAdapter();
 
@@ -74,7 +77,7 @@ public class RacesListActivity extends SherlockListActivity {
 	 */
 	private void bindListViewData() {
 
-		// CrÈation de la ArrayList qui nous permettra de remplir la listView
+		// Création de la ArrayList qui nous permettra de remplir la listView
 		ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 
 		HashMap<String, String> map; // HashMap temporaire qui contiendra les informations pour un item
