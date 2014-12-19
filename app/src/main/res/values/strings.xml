@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">YaNoo Mobile</string>
+    <string name="home_activityname">YaNoo</string>
+    <string name="news_activityname">News</string>
+    <string name="news_nodata">Cliquer sur rafraichir pour récupérer les news</string>
+    <string name="races_activityname">Courses</string>
+    <string name="races_nodata">Cliquer sur rafraichir pour récupérer la liste des courses</string>
+    <string name="races_getdata">Récupération des courses en cours ...</string>
+    <string name="races_datareceived">Liste des courses mise à jour</string>
+
+</resources>
